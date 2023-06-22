@@ -8,12 +8,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Main {
     public static final Map<Integer, Integer> sizeToFreq = new HashMap<>();
     private static final Object monitor = new Object();
-    public static final int LENGTH_STREAM = 1000;
+    public static final int LENGTH_THREAD = 1000;
 
     public static void main(String[] args) {
 
 
-        ExecutorService executors = Executors.newFixedThreadPool(1000);
+        ExecutorService executors = Executors.newFixedThreadPool(LENGTH_THREAD);
         for (int i = 0; i < 1000; i++) {
             int index = i;
             AtomicInteger count = new AtomicInteger();
@@ -46,6 +46,7 @@ public class Main {
                 maxKey = key;
             }
         }
+
         System.out.println();
         System.out.println("Самое частое количество повторений " + maxKey + " (встретилось " + maxValue + " раз)");
         sizeToFreq.remove(maxKey);
